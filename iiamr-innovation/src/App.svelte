@@ -1,35 +1,39 @@
 <script lang="ts">
   import { qrwcSvelte } from './lib/qrwc';
-  import Gain from './lib/components/Gain.svelte';
-  import Label from './lib/components/Label.svelte';
-  import DateTime from './lib/components/DateTime.svelte';
-
+  //import MainPage from './lib/components/MainPage.svelte';
+  import HeaderComponent from './lib/components/HeaderComponent.svelte';
+  import MainComponent from './lib/components/MainComponent.svelte';
+  
+  let roomData = {
+    roomName: "Innovation room 1",
+    subtitle: "IAMR", 
+    mode: "Presenting MTR"
+  };  
 </script>
 
 {#if qrwcSvelte.isConnected}
-  <div class="main-wrapper">
-    <header class="Header">
-      <div class="Header-left">
-        <span class="header-divider"></span>
-        <Label/>
-      </div>
-      <div class="Header-right">
-        <DateTime />
-        <img class="logo" src="https://inghaminstitute.org.au/wp-content/uploads/2022/10/InghamInstitute_10yrs_RGB.png" alt="company logo" />
-      </div>
-    </header>
-    <main class="ControlArea">
-      <Gain/>
-    </main>
-    <footer class="Footer">
-      <div class="footer-buttons">
-        <button class="footer-btn">Home</button>
-        <button class="footer-btn">Help</button>
-        <button class="footer-btn">Settings</button>
-      </div>
-      <span class="footer-copyright">UCI Innovation Lab &copy; 2025</span>
-    </footer>
-  </div>
+<div class="app-container">
+  <HeaderComponent {...roomData} />
+  <MainComponent />
+</div>
 {:else}
   <h1>Not connected</h1>
 {/if}
+
+<style>
+  :global(body) {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .app-container {
+    height: 90vh;
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f4f6;
+    border: none;
+  }
+
+
+</style>
