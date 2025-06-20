@@ -1,12 +1,18 @@
 <!-- HeaderComponent.svelte (Top White Section) -->
-<script>
+<script> 
+import { qrwcSvelte } from "../qrwc";
 import DateTime from './DateTime.svelte';
-  let { roomName, subtitle, mode } = $props();
+  let { roomController, mode } = $props();
+  //const roomControlsComponent = qrwcSvelte.useComponent(roomController);
+  const roomControlsComponent = qrwcSvelte.useComponent("Room 1 controller");
+  const roomName = roomControlsComponent.useText("RoomName");
+  const subtitle = roomControlsComponent.useText("ProjectName");
 </script>
+
 <div class="header">
   <div class="header-left">
-    <h1 class="room-name">{roomName}</h1>
-    <div class="subtitle">{subtitle}</div>
+    <h1 class="room-name">{roomName.string}</h1>
+    <div class="subtitle">{subtitle.string}</div>
     <div class="mode">{mode}</div>
   </div>
   <div class="header-right">

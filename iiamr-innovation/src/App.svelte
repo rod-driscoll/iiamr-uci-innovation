@@ -5,16 +5,15 @@
   import MainComponent from './lib/components/MainComponent.svelte';
   
   let roomData = {
-    roomName: "Innovation room 1",
-    subtitle: "IAMR", 
-    mode: "Presenting MTR"
+    mode: "Presenting MTR",
+    roomController: "Room 1 controller"
   };  
 </script>
 
 {#if qrwcSvelte.isConnected}
 <div class="app-container">
   <HeaderComponent {...roomData} />
-  <MainComponent />
+  <MainComponent {...roomData} />
 </div>
 {:else}
   <h1>Not connected</h1>

@@ -1,7 +1,10 @@
 <!-- MainComponent.svelte (Main Grid + Bottom Bar) -->
 <script>
+  import { qrwcSvelte } from "../qrwc";
   import BottomBarComponent from './BottomBarComponent.svelte';
-  
+  let { roomController } = $props();
+  const roomControlsComponent = qrwcSvelte.useComponent(roomController);
+
   let controlStates = $state({
     teams: true,
     television: false,
@@ -158,7 +161,7 @@
     </div>
   </div>
   
-  <BottomBarComponent />
+  <BottomBarComponent {roomController} />
 </div>
 
 <style>
